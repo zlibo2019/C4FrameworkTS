@@ -1,0 +1,39 @@
+{
+  "name": "c4framework",
+  "version": "1.0.5",
+  "description": "C4Framework",
+  "main": "out/main.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/connect-redis": "0.0.7",
+    "@types/eureka-js-client": "^4.3.1",
+    "@types/node-rest-client": "^1.0.1",
+    "@types/uuid": "^3.4.3",
+    "c4ajv": "^1.0.5",
+    "c4apisclient": "^1.0.2",
+    "c4configger": "^1.0.6",
+    "c4eurekaclient": "^1.0.3",
+    "c4loadbalancer": "^1.0.2",
+    "c4logger": "^1.0.2",
+    "c4mq": "^1.0.10",
+    "c4orm": "^1.0.4",
+    "c4restfulclient": "^1.0.14",
+    "c4utils": "^1.0.5",
+    "c4webservice": "^1.0.31",
+    "connect-redis": "^3.3.3",
+    "glob": "^7.1.2",
+    "ioredis": "^3.2.2",
+    "node-pre-gyp": "^0.9.1",
+    "redis-cookie-store": "^1.0.0",
+    "sequelize-typescript": "^0.6.3",
+    "uuid": "^3.2.1"
+  }
+}

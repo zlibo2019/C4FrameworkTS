@@ -1,0 +1,21 @@
+{
+  "name": "c4eurekaclient",
+  "version": "1.0.3",
+  "description": "C4Framework Eureka Client",
+  "main": "out/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "Eureka",
+    "Client"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/eureka-js-client": "^4.3.1",
+    "eureka-js-client": "^4.4.1"
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "@types/clone-deep",
+    "version": "1.0.0",
+    "description": "TypeScript definitions for clone-deep",
+    "main": "",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT"
+  }
+  

@@ -1,0 +1,11 @@
+{
+  "name": "@types/mixin-deep",
+  "version": "1.0.0",
+  "description": "TypeScript definitions for mixin-deep",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

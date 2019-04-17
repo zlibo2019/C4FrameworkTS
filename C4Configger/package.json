@@ -1,0 +1,31 @@
+{
+  "name": "c4configger",
+  "version": "1.0.6",
+  "description": "C4Framework Configger",
+  "main": "out/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "Configger"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/ajv": "^1.0.0",
+    "@types/js-yaml": "^3.10.1",
+    "@types/node": "^9.4.6",
+    "@types/strip-json-comments": "0.0.30",
+    "ajv": "^6.2.1",
+    "c4ajv": "^1.0.5",
+    "c4restfulclient": "^1.0.13",
+    "c4utils": "^1.0.5",
+    "cloud-config-client": "^1.1.0",
+    "js-yaml": "^3.10.0",
+    "moment": "^2.22.2",
+    "strip-json-comments": "^2.0.1",
+    "uuid": "^3.3.2"
+  }
+}

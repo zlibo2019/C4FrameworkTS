@@ -1,0 +1,6506 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0",
+		"contact": {
+			"name": "威尔数据",
+			"url": "http://www.weds.com.cn",
+			"email": "caoheyang@weds.com.cn"
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+		}
+	},
+	"host": "10.0.0.104:8097",
+	"basePath": "/bepf",
+	"tags": [{
+		"name": "home-page-info-controller",
+		"description": "app首页信息接口"
+	}, {
+		"name": "edu-level-controller",
+		"description": "学级管理接口"
+	}, {
+		"name": "grade-info-controller",
+		"description": "年级管理接口"
+	}, {
+		"name": "account-controller",
+		"description": "平台帐号接口"
+	}, {
+		"name": "user-info-controller",
+		"description": "app我的"
+	}, {
+		"name": "push-controller",
+		"description": "Push Controller"
+	}, {
+		"name": "leave-info-controller",
+		"description": "请假管理服务"
+	}, {
+		"name": "notice-info-controller",
+		"description": "通知接口"
+	}, {
+		"name": "mesg-controller",
+		"description": "消息管理接口"
+	}, {
+		"name": "user-record-controller",
+		"description": "进出记录管理服务"
+	}, {
+		"name": "visitor-info-controller",
+		"description": "访客计划管理服务"
+	}, {
+		"name": "class-info-controller",
+		"description": "班级管理接口"
+	}, {
+		"name": "user-record-analysis-controller",
+		"description": "进出分析管理服务"
+	}, {
+		"name": "visitor-info-short-controller",
+		"description": "临时访客管理"
+	}, {
+		"name": "code-controller",
+		"description": "Code Controller"
+	}],
+	"paths": {
+		"/account/delete": {
+			"post": {
+				"tags": ["account-controller"],
+				"summary": "删除某账户",
+				"operationId": "deleteUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/account/getSmsCode": {
+			"get": {
+				"tags": ["account-controller"],
+				"summary": "获取验证码信息",
+				"operationId": "getSmsCodeUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "telePhone",
+					"in": "query",
+					"description": "手机号码",
+					"required": true,
+					"type": "string",
+					"default": "0"
+				}, {
+					"name": "userId",
+					"in": "query",
+					"description": "用户ID",
+					"required": false,
+					"type": "integer",
+					"default": 0,
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«object»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/account/list": {
+			"post": {
+				"tags": ["account-controller"],
+				"summary": "获取平台账户列表",
+				"operationId": "listUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/account/loginCheck": {
+			"post": {
+				"tags": ["account-controller"],
+				"summary": "登录验证平台账户",
+				"operationId": "loginCheckUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "obj",
+					"description": "登录验证参数",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/LoginEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultLoginResp"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/account/modifyPwd": {
+			"post": {
+				"tags": ["account-controller"],
+				"summary": "修改登录密码",
+				"operationId": "modifyPwdUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "obj",
+					"description": "修改密码参数",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/AccountPwdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/account/register": {
+			"post": {
+				"tags": ["account-controller"],
+				"summary": "注册新平台账户",
+				"operationId": "registerUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "accountEntity",
+					"description": "注册入参",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/AccountEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/account/saveByRole": {
+			"post": {
+				"tags": ["account-controller"],
+				"summary": "保存某系统角色下的账户",
+				"operationId": "saveByRoleUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/account/validateSmsCode": {
+			"post": {
+				"tags": ["account-controller"],
+				"summary": "验证验证码信息",
+				"operationId": "validateSmsCodeUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "paraMap",
+					"description": "paraMap",
+					"required": true,
+					"schema": {
+						"type": "object"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«string»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/class/add": {
+			"post": {
+				"tags": ["class-info-controller"],
+				"summary": "新增班级",
+				"operationId": "addUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "classEntity",
+					"description": "classEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/ClassEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultint"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/class/getList": {
+			"post": {
+				"tags": ["class-info-controller"],
+				"summary": "根据年级查询班级列表",
+				"operationId": "getListUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "classEntity",
+					"description": "classEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/ClassEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultListClassEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/code/addItem": {
+			"post": {
+				"tags": ["code-controller"],
+				"summary": "addItem",
+				"operationId": "addItemUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "scCodeTypeMap",
+					"description": "scCodeTypeMap",
+					"required": true,
+					"schema": {
+						"type": "object"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/code/create": {
+			"post": {
+				"tags": ["code-controller"],
+				"summary": "createCode",
+				"operationId": "createCodeUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "scCodeType",
+					"description": "scCodeType",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/ScCodeType"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/code/delItem": {
+			"post": {
+				"tags": ["code-controller"],
+				"summary": "delItem",
+				"operationId": "delItemUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "paramMap",
+					"description": "paramMap",
+					"required": true,
+					"schema": {
+						"type": "object"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/code/getItem": {
+			"get": {
+				"tags": ["code-controller"],
+				"summary": "getItem",
+				"operationId": "getItemUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "codeNo",
+					"in": "query",
+					"description": "codeNo",
+					"required": true,
+					"type": "string"
+				}, {
+					"name": "deptId",
+					"in": "query",
+					"description": "deptId",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/edu/add": {
+			"post": {
+				"tags": ["edu-level-controller"],
+				"summary": "新增学级",
+				"operationId": "addUsingPOST_1",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "eduLevelEntity",
+					"description": "eduLevelEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/EduLevelEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultEduLevelEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/edu/getList": {
+			"post": {
+				"tags": ["edu-level-controller"],
+				"summary": "根据学校id查询学级列表",
+				"operationId": "getListUsingPOST_1",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "eduLevelEntity",
+					"description": "eduLevelEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/EduLevelEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultListEduLevelEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/grade/add": {
+			"post": {
+				"tags": ["grade-info-controller"],
+				"summary": "新增年级",
+				"operationId": "addUsingPOST_2",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "gradeEntity",
+					"description": "gradeEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/GradeEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultint"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/grade/getList": {
+			"post": {
+				"tags": ["grade-info-controller"],
+				"summary": "根据学校id查询年级列表",
+				"operationId": "getListUsingPOST_2",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "gradeEntity",
+					"description": "gradeEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/GradeEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultListGradeEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/homePage/getMesgCount": {
+			"post": {
+				"tags": ["home-page-info-controller"],
+				"summary": "首页未读消息数量",
+				"operationId": "getMesgCountUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«HomeMesgCountEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/homePage/getMesgDetail": {
+			"post": {
+				"tags": ["home-page-info-controller"],
+				"summary": "首页消息详情",
+				"operationId": "getMesgDetailUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/MesgIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«HomeMesgDetailEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/homePage/getMesgInfo": {
+			"post": {
+				"tags": ["home-page-info-controller"],
+				"summary": "首页消息详情",
+				"operationId": "getMesgInfoUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/PageSearch«MesgSearchEntity»"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«CommPager«HomeMesgInfoEntity»»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/homePage/getTeacherInfo": {
+			"post": {
+				"tags": ["home-page-info-controller"],
+				"summary": "教师端首页",
+				"operationId": "getTeacherInfoUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«HomeTeacherInfoEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/homePage/getUserInfo": {
+			"post": {
+				"tags": ["home-page-info-controller"],
+				"summary": "获取首页学生及功能信息",
+				"operationId": "getUserInfoUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«HomeUserInfoEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/homePage/setMesgState": {
+			"post": {
+				"tags": ["home-page-info-controller"],
+				"summary": "更改消息已读状态",
+				"operationId": "setMesgStateUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/MesgIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«int»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/homePage/showModule": {
+			"post": {
+				"tags": ["home-page-info-controller"],
+				"summary": "showModule",
+				"operationId": "showModuleUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"type": "object"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/approveApply": {
+			"post": {
+				"tags": ["leave-info-controller"],
+				"summary": "任务审批",
+				"operationId": "approveApplyUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/LeaveApproveInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/cancleApply": {
+			"post": {
+				"tags": ["leave-info-controller"],
+				"summary": "任务撤销",
+				"operationId": "cancleApplyUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/LeaveCancleInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/getApply": {
+			"get": {
+				"tags": ["leave-info-controller"],
+				"summary": "任务详情",
+				"operationId": "getApplyUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "leaveId",
+					"in": "query",
+					"description": "leaveId",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultLeaveInfoEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/getApplyListByUser": {
+			"post": {
+				"tags": ["leave-info-controller"],
+				"summary": "获取任务清单",
+				"operationId": "getApplyListByUserUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/PageSearchLeaveInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultCommPagerLeaveInfoEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/getApplySum": {
+			"get": {
+				"tags": ["leave-info-controller"],
+				"summary": "获取任务汇总信息",
+				"operationId": "getApplySumUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "schoolId",
+					"in": "query",
+					"description": "schoolId",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultLeaveApplySumEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/getApplyToday": {
+			"post": {
+				"tags": ["leave-info-controller"],
+				"summary": "获取当天请假信息",
+				"operationId": "getApplyTodayUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "searchRecord",
+					"description": "searchRecord",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/PageSearchCustomEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultCommPagerLeaveInfoEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/getRunApply": {
+			"get": {
+				"tags": ["leave-info-controller"],
+				"summary": "待审批任务获取",
+				"operationId": "getRunApplyUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "userId",
+					"in": "query",
+					"description": "用户ID",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "flag",
+					"in": "query",
+					"description": "标识",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "pageIndex",
+					"in": "query",
+					"description": "页码",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "pageSize",
+					"in": "query",
+					"description": "每页条数",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultLeaveRunApplyEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/readApply": {
+			"post": {
+				"tags": ["leave-info-controller"],
+				"summary": "任务已阅",
+				"operationId": "readApplyUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/LeaveReadInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/leaveInfo/startApply": {
+			"post": {
+				"tags": ["leave-info-controller"],
+				"summary": "发起申请",
+				"operationId": "startApplyUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/LeaveInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/mesg/getItem": {
+			"post": {
+				"tags": ["mesg-controller"],
+				"summary": "获取消息大类数量与第一条内容",
+				"operationId": "getItemUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«List«MesgItemEntity»»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/mesg/getList": {
+			"post": {
+				"tags": ["mesg-controller"],
+				"summary": "获取消息通知公告列表",
+				"operationId": "getListUsingPOST_3",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/PageSearch«MesgSearchEntity»"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«CommPager«MesgItemList»»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/notice/add": {
+			"post": {
+				"tags": ["notice-info-controller"],
+				"summary": "发布通知",
+				"operationId": "addUsingPOST_3",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "noticeInfoEntity",
+					"description": "noticeInfoEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/NoticeInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«string»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/notice/detail": {
+			"post": {
+				"tags": ["notice-info-controller"],
+				"summary": "获取通知详情",
+				"operationId": "detailUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/NoticeIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«NoticeInfoEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/notice/getReadInfo": {
+			"post": {
+				"tags": ["notice-info-controller"],
+				"summary": "获取通知已读未读人数数量",
+				"operationId": "getReadInfoUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/NoticeIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«NoticeReadCountEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/notice/getReadList": {
+			"post": {
+				"tags": ["notice-info-controller"],
+				"summary": "获取通知已读未读人数列表",
+				"operationId": "getReadListUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/NoticeIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«NoticeUserListEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/notice/list": {
+			"post": {
+				"tags": ["notice-info-controller"],
+				"summary": "获取已发布通知",
+				"operationId": "listUsingPOST_1",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "noticeSearchEntity",
+					"description": "noticeSearchEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/PageSearch«NoticeSearchEntity»"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«CommPager«NoticeInfoEntity»»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/ParentList": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "家长列表",
+				"operationId": "ParentListUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/DelParentEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«List«ParentListEntity»»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/addParent": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "邀请家长",
+				"operationId": "addParentUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/AddParentEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/addRela": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "家长端完善与学生关系",
+				"operationId": "addRelaUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "relaInfoEntity",
+					"description": "relaInfoEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/RelaInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/addStu": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "家长端绑定学生",
+				"operationId": "addStuUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/advice": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "意见反馈",
+				"operationId": "adviceUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserAdviceEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultint"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/delParent": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "删除家长",
+				"operationId": "delParentUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/DelParentEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/delStu": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "家长端解绑学生",
+				"operationId": "delStuUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultint"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/getDetail": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "获取人员详情",
+				"operationId": "getDetailUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "userIdEntity",
+					"description": "userIdEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultUserInfoEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/getSchoolList": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "家长端获取学校列表",
+				"operationId": "getSchoolListUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultListSchoolInfoEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/getStuByTeacher": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "根据教师获取学生",
+				"operationId": "getStuByTeacherUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«List«ParentStuList»»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/getStuInfoByNo": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "家长端根据学号获取学生信息",
+				"operationId": "getStuInfoByNoUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«StuInfoEntity»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/getStuList": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "家长端获取学生信息",
+				"operationId": "getStuByParentUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserIdEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«List«ParentStuList»»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/getTeacherBySchoolId": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "根据学校信息获取教师列表",
+				"operationId": "getTeacherBySchoolIdUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserInfoSearchEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultListTeacherInfoEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/modify": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "修改档案",
+				"operationId": "modifyUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "userInfoEntity",
+					"description": "userInfoEntity",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/modifyTel": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "修改手机号",
+				"operationId": "modifyTelUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "map",
+					"description": "map",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserTelAlterEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/user/relaList": {
+			"post": {
+				"tags": ["user-info-controller"],
+				"summary": "关系列表",
+				"operationId": "relaListUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResult«JSONObject»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/userRecord/selectRecordInfo": {
+			"get": {
+				"tags": ["user-record-controller"],
+				"summary": "查询刷卡记录详情",
+				"operationId": "selectRecordInfoUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "recordId",
+					"in": "query",
+					"description": "记录编号",
+					"required": true,
+					"type": "integer",
+					"default": 0,
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultUserRecordEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/userRecord/selectRecordList": {
+			"post": {
+				"tags": ["user-record-controller"],
+				"summary": "学生刷卡记录查询",
+				"operationId": "selectRecordListUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/PageSearchUserRecordEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultCommPagerUserRecordEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/userRecordAnalysis/getAllStudentState": {
+			"get": {
+				"tags": ["user-record-analysis-controller"],
+				"summary": "获取所有学生状态",
+				"operationId": "getAllStudentStateUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "roleId",
+					"in": "query",
+					"description": "角色ID",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "flag",
+					"in": "query",
+					"description": "标识",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "userId",
+					"in": "query",
+					"description": "用户ID",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "classId",
+					"in": "query",
+					"description": "班级ID",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultUserAllStudentStateEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/userRecordAnalysis/getOneStudentState": {
+			"get": {
+				"tags": ["user-record-analysis-controller"],
+				"summary": "获取当前学生状态",
+				"operationId": "getOneStudentStateUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "userId",
+					"in": "query",
+					"description": "userId",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultUserRecordAnalysisRedisEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/userRecordAnalysis/getStudentListByState": {
+			"get": {
+				"tags": ["user-record-analysis-controller"],
+				"summary": "根据状态获取学生清单",
+				"operationId": "getStudentListByStateUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "userId",
+					"in": "query",
+					"description": "用户ID",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "schoolId",
+					"in": "query",
+					"description": "学校ID",
+					"required": false,
+					"type": "string"
+				}, {
+					"name": "userState",
+					"in": "query",
+					"description": "用户状态",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultListUserRecordAnalysisRedisEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/userRecordAnalysis/updateStudentState": {
+			"post": {
+				"tags": ["user-record-analysis-controller"],
+				"summary": "更新学生状态",
+				"operationId": "updateStudentStateUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/UserRecordAnalysisEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/visitorInfo/addVisitor": {
+			"post": {
+				"tags": ["visitor-info-controller"],
+				"summary": "添加访客计划",
+				"operationId": "addVisitorUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/VisitorInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultVisitorInfoEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/visitorInfo/getVisitor": {
+			"get": {
+				"tags": ["visitor-info-controller"],
+				"summary": "获取访客计划和记录",
+				"operationId": "getVisitorUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "visitorId",
+					"in": "query",
+					"description": "visitorId",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultVisitorInfoEntity"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/visitorInfo/getVisitorList": {
+			"post": {
+				"tags": ["visitor-info-controller"],
+				"summary": "获取访客计划列表",
+				"operationId": "getVisitorListUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/PageSearchVisitorInfoEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultCommPagerVisitorInfoEntity"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/visitorInfoShort/addVisitorShort": {
+			"post": {
+				"tags": ["visitor-info-short-controller"],
+				"summary": "临时访客添加记录",
+				"operationId": "addVisitorShortUsingPOST",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"in": "body",
+					"name": "record",
+					"description": "record",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/VisitorInfoShortEntity"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/JsonResultstring"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"ClassEntity": {
+			"type": "object",
+			"required": ["classId", "className", "deptId", "gradeId", "gradeName", "groupId", "schoolId", "schoolName"],
+			"properties": {
+				"classId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "自增班级id"
+				},
+				"className": {
+					"type": "string",
+					"example": "101班",
+					"description": "班级名称"
+				},
+				"deptId": {
+					"type": "integer",
+					"format": "int32",
+					"example": "一班",
+					"description": "组织架构id"
+				},
+				"gradeId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "年级id"
+				},
+				"gradeName": {
+					"type": "string",
+					"example": "一年级",
+					"description": "年级名称"
+				},
+				"groupId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "根级类别"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "学校id"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "烟台三中",
+					"description": "学校名称"
+				}
+			}
+		},
+		"JsonResult«StuInfoEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/StuInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"StuInfoEntity": {
+			"type": "object",
+			"properties": {
+				"userDepname": {
+					"type": "string"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userName": {
+					"type": "string"
+				}
+			}
+		},
+		"CommPager«MesgItemList»": {
+			"type": "object",
+			"properties": {
+				"curren_records": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码记录数"
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"description": "每页容量"
+				},
+				"records": {
+					"type": "array",
+					"description": "数据记录",
+					"items": {
+						"$ref": "#/definitions/MesgItemList"
+					}
+				},
+				"total_page": {
+					"type": "integer",
+					"format": "int32",
+					"description": "总页数"
+				},
+				"total_record": {
+					"type": "integer",
+					"format": "int64",
+					"description": "总条数"
+				}
+			}
+		},
+		"UserRecordAnalysisEntity": {
+			"type": "object",
+			"required": ["inRecordid", "inTime", "leaveId", "outRecordid", "outTime", "schoolId", "userDep", "userDepname", "userId", "userName", "userState"],
+			"properties": {
+				"inRecordid": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "入校记录"
+				},
+				"inTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "入校时间"
+				},
+				"leaveId": {
+					"type": "string",
+					"example": "测试",
+					"description": "请假记录"
+				},
+				"outRecordid": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "离校记录"
+				},
+				"outTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "离校时间"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校ID"
+				},
+				"userDep": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "部门"
+				},
+				"userDepname": {
+					"type": "string",
+					"example": "测试",
+					"description": "部门名称"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "人员id"
+				},
+				"userName": {
+					"type": "string",
+					"example": "测试",
+					"description": "姓名"
+				},
+				"userState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "状态"
+				}
+			}
+		},
+		"MesgItemEntity": {
+			"type": "object",
+			"required": ["ctDate", "mesgCount", "mesgId", "mesgInfo", "mesgType"],
+			"properties": {
+				"ctDate": {
+					"type": "string",
+					"format": "date-time",
+					"example": "0",
+					"description": "消息最新时间"
+				},
+				"mesgCount": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息数目"
+				},
+				"mesgId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息最新id"
+				},
+				"mesgInfo": {
+					"type": "string",
+					"example": "0",
+					"description": "消息最新内容"
+				},
+				"mesgType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息大类"
+				}
+			}
+		},
+		"JsonResultCommPagerUserRecordEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/CommPagerUserRecordEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"CommPager«HomeMesgInfoEntity»": {
+			"type": "object",
+			"properties": {
+				"curren_records": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码记录数"
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"description": "每页容量"
+				},
+				"records": {
+					"type": "array",
+					"description": "数据记录",
+					"items": {
+						"$ref": "#/definitions/HomeMesgInfoEntity"
+					}
+				},
+				"total_page": {
+					"type": "integer",
+					"format": "int32",
+					"description": "总页数"
+				},
+				"total_record": {
+					"type": "integer",
+					"format": "int64",
+					"description": "总条数"
+				}
+			}
+		},
+		"PushMould": {
+			"type": "object",
+			"properties": {
+				"body": {
+					"type": "string"
+				},
+				"curPageSize": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"fromId": {
+					"type": "string"
+				},
+				"fromTable": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"pushType": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"pushTypeDetail": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"pushUser": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"receive": {
+					"type": "string"
+				},
+				"receiveId": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				}
+			}
+		},
+		"JsonResultUserRecordAnalysisRedisEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/UserRecordAnalysisRedisEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"Map«string,object»": {
+			"type": "object",
+			"additionalProperties": {
+				"type": "object"
+			}
+		},
+		"JsonResult«NoticeReadCountEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/NoticeReadCountEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResult«object»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "object",
+					"description": "具体的业务数据"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"LoginEntity": {
+			"type": "object",
+			"required": ["loginName", "pwd", "type"],
+			"properties": {
+				"loginName": {
+					"type": "string",
+					"description": "登录账户"
+				},
+				"pwd": {
+					"type": "string",
+					"description": "登录密码"
+				},
+				"type": {
+					"type": "string",
+					"description": "登录类别(1:工号 2:手机 3:邮箱 4:身份证号码)"
+				}
+			}
+		},
+		"JsonResultLeaveRunApplyEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/LeaveRunApplyEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"LeaveCancleInfoEntity": {
+			"type": "object",
+			"required": ["classId", "leaveId", "leaveState", "leaveType", "leaveUser", "roleId", "schoolId", "userId"],
+			"properties": {
+				"classId": {
+					"type": "string",
+					"example": "101",
+					"description": "班级ID"
+				},
+				"leaveId": {
+					"type": "string",
+					"description": "请假ID"
+				},
+				"leaveState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "审批状态"
+				},
+				"leaveType": {
+					"type": "string",
+					"example": "199",
+					"description": "请假类型"
+				},
+				"leaveUser": {
+					"type": "integer",
+					"format": "int32",
+					"example": 20000,
+					"description": "学生ID"
+				},
+				"roleId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 200,
+					"description": "角色ID"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10000,
+					"description": "学校ID"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10001,
+					"description": "审批人ID"
+				}
+			}
+		},
+		"JsonResultstring": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "string",
+					"description": "具体的业务数据"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"UserInfoEntity": {
+			"type": "object",
+			"required": ["attId", "bandingOrder", "cardSerial", "classId", "ctDate", "ctUserId", "ltDate", "ltUserId", "parentInfo", "roleNos", "schoolId", "schoolName", "userCard", "userDep", "userDepname", "userDuty", "userEmail", "userId", "userIdentity", "userInfo", "userName", "userNo", "userPassword", "userPhoto", "userRemark", "userSerial", "userSex", "userState", "userTel", "userType", "versionNo"],
+			"properties": {
+				"attId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0
+				},
+				"bandingOrder": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "主次账户 1：主 2次"
+				},
+				"cardSerial": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "逻辑卡号"
+				},
+				"classId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "班级id"
+				},
+				"ctDate": {
+					"description": "创建时间",
+					"$ref": "#/definitions/Timestamp"
+				},
+				"ctUserId": {
+					"type": "string",
+					"example": "0",
+					"description": "创建人"
+				},
+				"ltDate": {
+					"description": "修改日期",
+					"$ref": "#/definitions/Timestamp"
+				},
+				"ltUserId": {
+					"type": "string",
+					"example": "0",
+					"description": "修改人id"
+				},
+				"parentId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"parentInfo": {
+					"type": "array",
+					"example": "\"0\"",
+					"description": "学生家长属性",
+					"items": {
+						"$ref": "#/definitions/ParentInfoEntity"
+					}
+				},
+				"roleNos": {
+					"type": "string",
+					"example": "0",
+					"description": "角色码"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "0",
+					"description": "学校名称"
+				},
+				"teacherClass": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"userCard": {
+					"type": "string",
+					"example": "0",
+					"description": "卡号"
+				},
+				"userDep": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "部门id"
+				},
+				"userDepname": {
+					"type": "string",
+					"example": "0",
+					"description": "部门名称"
+				},
+				"userDuty": {
+					"type": "string",
+					"example": "0",
+					"description": "职务"
+				},
+				"userEmail": {
+					"type": "string",
+					"example": "0",
+					"description": "邮箱"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "档案编号，同user_serial"
+				},
+				"userIdentity": {
+					"type": "string",
+					"example": "0",
+					"description": "身份证"
+				},
+				"userInfo": {
+					"description": "人员其他属性",
+					"$ref": "#/definitions/JsonMapEntityNew"
+				},
+				"userName": {
+					"type": "string",
+					"example": "0",
+					"description": "姓名"
+				},
+				"userNo": {
+					"type": "string",
+					"example": "0",
+					"description": "工号"
+				},
+				"userPassword": {
+					"type": "string",
+					"example": "0",
+					"description": "密码"
+				},
+				"userPhoto": {
+					"type": "string",
+					"example": "0",
+					"description": "图片地址"
+				},
+				"userRemark": {
+					"type": "string",
+					"example": "0",
+					"description": "人员备注"
+				},
+				"userSerial": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "档案编号"
+				},
+				"userSex": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "性别"
+				},
+				"userState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "人员状态"
+				},
+				"userTel": {
+					"type": "string",
+					"example": "0",
+					"description": "联系电话"
+				},
+				"userType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "档案类型"
+				},
+				"versionNo": {
+					"type": "integer",
+					"format": "int64",
+					"example": 0,
+					"description": "版本号"
+				}
+			}
+		},
+		"ScCodeType": {
+			"type": "object",
+			"properties": {
+				"bsDeptId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "所属组织"
+				},
+				"codeName": {
+					"type": "string",
+					"description": "字典项名称"
+				},
+				"codeNo": {
+					"type": "string",
+					"description": "字典项编号"
+				},
+				"codeStateId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "控制状态：1 不可查看,2可查看不可编辑,3可编辑"
+				},
+				"ctDate": {
+					"$ref": "#/definitions/Timestamp"
+				},
+				"ctUserId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"fieldId": {
+					"type": "string"
+				},
+				"fieldName": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"ltDate": {
+					"$ref": "#/definitions/Timestamp"
+				},
+				"ltUserId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"remark": {
+					"type": "string"
+				},
+				"showOrder": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"sqlOrder": {
+					"type": "string",
+					"description": "字典项内容排序规则"
+				},
+				"sqlView": {
+					"type": "string",
+					"description": "字典项内容视图"
+				},
+				"sqlWhere": {
+					"type": "string",
+					"description": "字典项内容过滤条件"
+				},
+				"useStatusId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"version": {
+					"type": "string"
+				}
+			}
+		},
+		"AddParentEntity": {
+			"type": "object",
+			"required": ["currentUserId", "userName", "userPwd", "userRela", "userTel"],
+			"properties": {
+				"currentUserId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前用户id"
+				},
+				"userName": {
+					"type": "string",
+					"example": "史蒂夫",
+					"description": "姓名"
+				},
+				"userPwd": {
+					"type": "string",
+					"description": "密码"
+				},
+				"userRela": {
+					"type": "string",
+					"example": "1",
+					"description": "与学生的关系"
+				},
+				"userTel": {
+					"type": "string",
+					"example": "15012121452",
+					"description": "电话"
+				}
+			}
+		},
+		"JSONObject": {
+			"type": "object",
+			"additionalProperties": {
+				"type": "object"
+			}
+		},
+		"JsonResult«HomeMesgCountEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/HomeMesgCountEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResult«List«MesgItemEntity»»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/MesgItemEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonMapEntity": {
+			"type": "object"
+		},
+		"CommPagerVisitorInfoEntity": {
+			"type": "object",
+			"properties": {
+				"curren_records": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码记录数"
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"description": "每页容量"
+				},
+				"records": {
+					"type": "array",
+					"description": "数据记录",
+					"items": {
+						"$ref": "#/definitions/VisitorInfoEntity"
+					}
+				},
+				"total_page": {
+					"type": "integer",
+					"format": "int32",
+					"description": "总页数"
+				},
+				"total_record": {
+					"type": "integer",
+					"format": "int64",
+					"description": "总条数"
+				}
+			}
+		},
+		"JsonResult«CommPager«HomeMesgInfoEntity»»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/CommPager«HomeMesgInfoEntity»"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"CommPagerLeaveInfoEntity": {
+			"type": "object",
+			"properties": {
+				"curren_records": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码记录数"
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"description": "每页容量"
+				},
+				"records": {
+					"type": "array",
+					"description": "数据记录",
+					"items": {
+						"$ref": "#/definitions/LeaveInfoEntity"
+					}
+				},
+				"total_page": {
+					"type": "integer",
+					"format": "int32",
+					"description": "总页数"
+				},
+				"total_record": {
+					"type": "integer",
+					"format": "int64",
+					"description": "总条数"
+				}
+			}
+		},
+		"UserRecordAnalysisRedisEntity": {
+			"type": "object",
+			"properties": {
+				"inTime": {
+					"type": "string",
+					"description": "进校时间"
+				},
+				"inrecordid": {
+					"type": "string",
+					"description": "进校记录"
+				},
+				"leaveId": {
+					"type": "string",
+					"description": "请假编号"
+				},
+				"outRecordid": {
+					"type": "string",
+					"description": "离校记录"
+				},
+				"outTime": {
+					"type": "string",
+					"description": "离校时间"
+				},
+				"parentTel": {
+					"type": "string",
+					"description": "家长电话"
+				},
+				"recordPhoto": {
+					"type": "string",
+					"description": "拍照照片"
+				},
+				"userDep": {
+					"type": "string",
+					"description": "用户班级"
+				},
+				"userId": {
+					"type": "string",
+					"description": "用户ID"
+				},
+				"userName": {
+					"type": "string",
+					"description": "用户姓名"
+				},
+				"userNo": {
+					"type": "string",
+					"description": "用户编号"
+				},
+				"userPhoto": {
+					"type": "string",
+					"description": "档案照片"
+				},
+				"userState": {
+					"type": "string",
+					"description": "用户状态"
+				},
+				"versionNo": {
+					"type": "string",
+					"description": "版本号"
+				}
+			}
+		},
+		"LeaveReadInfoEntity": {
+			"type": "object",
+			"required": ["leaveId", "schoolId", "userId"],
+			"properties": {
+				"leaveId": {
+					"type": "string",
+					"description": "请假ID"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10000,
+					"description": "学校ID"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10000,
+					"description": "审批人ID"
+				}
+			}
+		},
+		"JsonResult«string»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "string",
+					"description": "具体的业务数据"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"LeaveApplySumEntity": {
+			"type": "object",
+			"properties": {
+				"leaveall": {
+					"type": "integer",
+					"format": "int32",
+					"description": "全部请假"
+				},
+				"leaverun": {
+					"type": "integer",
+					"format": "int32",
+					"description": "未审批"
+				},
+				"leavetoday": {
+					"type": "integer",
+					"format": "int32",
+					"description": "今天请假"
+				}
+			}
+		},
+		"MesgItemList": {
+			"type": "object",
+			"required": ["ctDate", "mesgId", "mesgInfo", "mesgPhoto", "mesgState", "mesgTitle", "stateId"],
+			"properties": {
+				"ctDate": {
+					"type": "string",
+					"format": "date-time",
+					"example": "0",
+					"description": "消息时间"
+				},
+				"mesgId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息id"
+				},
+				"mesgInfo": {
+					"type": "string",
+					"example": "0",
+					"description": "消息内容"
+				},
+				"mesgPhoto": {
+					"type": "string",
+					"example": "0",
+					"description": "消息图片"
+				},
+				"mesgState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息状态"
+				},
+				"mesgTitle": {
+					"type": "string",
+					"example": "0",
+					"description": "消息标题"
+				},
+				"stateId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息明细id"
+				}
+			}
+		},
+		"JsonResultUserAllStudentStateEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/UserAllStudentStateEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"Timestamp": {
+			"type": "object",
+			"properties": {
+				"date": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"day": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"hours": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"minutes": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"month": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"nanos": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"seconds": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"time": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"timezoneOffset": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"year": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"LoginResp": {
+			"type": "object",
+			"required": ["className", "schoolName", "token", "userInfo", "userPhoto", "userType", "user_id"],
+			"properties": {
+				"className": {
+					"type": "string",
+					"description": "班级名称"
+				},
+				"schoolName": {
+					"type": "string",
+					"description": "学校名称"
+				},
+				"token": {
+					"type": "string",
+					"description": "凭证"
+				},
+				"userInfo": {
+					"description": "用户信息",
+					"$ref": "#/definitions/UserReqEntity"
+				},
+				"userPhoto": {
+					"type": "string",
+					"description": "图像"
+				},
+				"userType": {
+					"type": "integer",
+					"format": "int32",
+					"description": "档案类型"
+				},
+				"user_id": {
+					"type": "integer",
+					"format": "int32",
+					"description": "用户id"
+				}
+			}
+		},
+		"JsonResult«List«ParentStuList»»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/ParentStuList"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResult«JSONObject»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "object",
+					"description": "具体的业务数据",
+					"additionalProperties": {
+						"type": "object"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"PageSearchUserRecordEntity": {
+			"type": "object",
+			"properties": {
+				"count": {
+					"type": "boolean",
+					"example": true,
+					"description": "是否查询数据总条数,默认false"
+				},
+				"order_by": {
+					"type": "string",
+					"example": "XXX desc,XXX asc",
+					"description": "排序字段  "
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "页码,默认1"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"example": 20,
+					"description": "每页条数,默认20"
+				},
+				"search": {
+					"description": "查询条件主体",
+					"$ref": "#/definitions/UserRecordEntity"
+				}
+			}
+		},
+		"UserRecordEntity": {
+			"type": "object",
+			"required": ["approveState", "cardNo", "ctDate", "deviceId", "doorId", "doorName", "idenType", "photoPath", "placeId", "placeName", "recordDirection", "recordId", "recordTime", "schoolId", "schoolName", "searchDate", "userId", "userName"],
+			"properties": {
+				"approveState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "审核状态"
+				},
+				"cardNo": {
+					"type": "string",
+					"example": "测试",
+					"description": "卡号"
+				},
+				"ctDate": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "入库时间"
+				},
+				"deviceId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "设备id"
+				},
+				"dicFmtMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"directionName": {
+					"type": "string"
+				},
+				"doorId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "门ID"
+				},
+				"doorName": {
+					"type": "string",
+					"example": "测试",
+					"description": "门名称"
+				},
+				"idenType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "识别方式"
+				},
+				"orderByFieldMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"photoPath": {
+					"type": "string",
+					"example": "测试",
+					"description": "照片"
+				},
+				"placeId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "场所id"
+				},
+				"placeName": {
+					"type": "string",
+					"example": "测试",
+					"description": "场所名称"
+				},
+				"recordDirection": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "方向"
+				},
+				"recordId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "记录id"
+				},
+				"recordTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "记录时间"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校ID"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "测试",
+					"description": "学校名"
+				},
+				"searchDate": {
+					"type": "string",
+					"example": "2018-7-16",
+					"description": "查询日期"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "人员id"
+				},
+				"userName": {
+					"type": "string",
+					"example": "测试",
+					"description": "人员名称"
+				}
+			}
+		},
+		"LeaveRunApplyEntity": {
+			"type": "object",
+			"properties": {
+				"leaveList": {
+					"type": "array",
+					"description": "待审批任务",
+					"items": {
+						"$ref": "#/definitions/LeaveInfoEntity"
+					}
+				},
+				"msgCount": {
+					"type": "string",
+					"description": "消息条数"
+				}
+			}
+		},
+		"MesgIdEntity": {
+			"type": "object",
+			"required": ["mesgId", "stateId"],
+			"properties": {
+				"mesgId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息id"
+				},
+				"stateId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息记录id"
+				}
+			}
+		},
+		"MesgSearchEntity": {
+			"type": "object",
+			"required": ["mesgType", "roleId", "title", "userId"],
+			"properties": {
+				"mesgType": {
+					"type": "integer",
+					"format": "int32",
+					"description": "消息大类"
+				},
+				"roleId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "角色id"
+				},
+				"title": {
+					"type": "string",
+					"description": "消息标题"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "人员id"
+				}
+			}
+		},
+		"JsonMapEntityNew": {
+			"type": "object"
+		},
+		"JsonResult«HomeUserInfoEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/HomeUserInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResult«HomeTeacherInfoEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/HomeTeacherInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"CustomEntity": {
+			"type": "object",
+			"properties": {
+				"dicFmtMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"paraMap": {
+					"type": "object"
+				}
+			}
+		},
+		"LeaveInfoEntity": {
+			"type": "object",
+			"required": ["applyUser", "beginTime", "classId", "className", "endTime", "isInterval", "leaveFile", "leaveId", "leaveReason", "leaveState", "leaveType", "leaveUser", "parentId", "parentName", "parentTel", "roleId", "schoolId", "schoolName", "studentName", "submitTime", "teacherId", "teacherName", "versionNo"],
+			"properties": {
+				"applyUser": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10000,
+					"description": "申请人id"
+				},
+				"beginTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "开始时间"
+				},
+				"classId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 101,
+					"description": "班级id"
+				},
+				"className": {
+					"type": "string",
+					"example": "测试",
+					"description": "班级名称"
+				},
+				"dicFmtMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"endTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "结束时间"
+				},
+				"isInterval": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "是否间隔假"
+				},
+				"leaveFile": {
+					"type": "string",
+					"example": "测试",
+					"description": "请假附件"
+				},
+				"leaveId": {
+					"type": "string",
+					"example": "测试",
+					"description": "记录id"
+				},
+				"leaveReason": {
+					"type": "string",
+					"example": "测试",
+					"description": "请假原因"
+				},
+				"leaveState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "审核状态"
+				},
+				"leaveType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "假类"
+				},
+				"leaveUser": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "请假学生id"
+				},
+				"list": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/LeaveFlowEntity"
+					}
+				},
+				"orderByFieldMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"parentId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "家长id"
+				},
+				"parentName": {
+					"type": "string",
+					"example": "测试",
+					"description": "家长名"
+				},
+				"parentTel": {
+					"type": "string",
+					"example": "测试",
+					"description": "家长手机号"
+				},
+				"recordTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"roleId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 200,
+					"description": "角色ID"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "测试",
+					"description": "学校名"
+				},
+				"stateName": {
+					"type": "string"
+				},
+				"studentName": {
+					"type": "string",
+					"example": "测试",
+					"description": "学生名"
+				},
+				"submitTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "提交时间"
+				},
+				"taskId": {
+					"type": "string"
+				},
+				"teacherId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "班主任id"
+				},
+				"teacherName": {
+					"type": "string",
+					"example": "测试",
+					"description": "班主任名称"
+				},
+				"typeName": {
+					"type": "string"
+				},
+				"userPhoto": {
+					"type": "string"
+				},
+				"versionNo": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "版本号"
+				}
+			}
+		},
+		"RelaInfoEntity": {
+			"type": "object",
+			"required": ["userId", "userName", "userRela", "userTel"],
+			"properties": {
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "用户id"
+				},
+				"userName": {
+					"type": "string",
+					"description": "用户姓名"
+				},
+				"userRela": {
+					"type": "string",
+					"description": "学生与家长关系"
+				},
+				"userTel": {
+					"type": "string",
+					"description": "手机号"
+				}
+			}
+		},
+		"JsonResult«CommPager«NoticeInfoEntity»»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/CommPager«NoticeInfoEntity»"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"HomeMesgInfoEntity": {
+			"type": "object",
+			"required": ["ctDate", "mesgId", "mesgInfo", "mesgPhoto", "mesgState", "mesgTitle", "mesgType", "stateId"],
+			"properties": {
+				"ctDate": {
+					"example": "0",
+					"description": "创建时间",
+					"$ref": "#/definitions/Timestamp"
+				},
+				"mesgId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息id"
+				},
+				"mesgInfo": {
+					"type": "string",
+					"example": "0",
+					"description": "消息内容"
+				},
+				"mesgPhoto": {
+					"type": "string",
+					"example": "0",
+					"description": "消息图片"
+				},
+				"mesgState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息状态"
+				},
+				"mesgTitle": {
+					"type": "string",
+					"example": "0",
+					"description": "消息标题"
+				},
+				"mesgType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息类别"
+				},
+				"stateId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "对应明细id"
+				}
+			}
+		},
+		"ParentStuList": {
+			"type": "object",
+			"properties": {
+				"depId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"schoolName": {
+					"type": "string"
+				},
+				"stuId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userDepname": {
+					"type": "string"
+				},
+				"userName": {
+					"type": "string"
+				},
+				"userNo": {
+					"type": "string"
+				},
+				"userPhoto": {
+					"type": "string"
+				}
+			}
+		},
+		"JsonResultUserRecordEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/UserRecordEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResult«int»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "integer",
+					"format": "int32",
+					"description": "具体的业务数据"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"LeaveApproveInfoEntity": {
+			"type": "object",
+			"required": ["classId", "leaveId", "leaveState", "leaveType", "leaveUser", "message", "result", "schoolId", "taskId", "userId"],
+			"properties": {
+				"classId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "班级ID"
+				},
+				"leaveId": {
+					"type": "string",
+					"description": "请假ID"
+				},
+				"leaveState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "审批状态"
+				},
+				"leaveType": {
+					"type": "string",
+					"example": "199",
+					"description": "请假类型"
+				},
+				"leaveUser": {
+					"type": "string",
+					"example": "0",
+					"description": "请假人"
+				},
+				"message": {
+					"type": "string",
+					"example": "同意",
+					"description": "操作内容"
+				},
+				"result": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "操作结果"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10000,
+					"description": "学校ID"
+				},
+				"taskId": {
+					"type": "string",
+					"description": "任务ID"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10001,
+					"description": "审批人ID"
+				}
+			}
+		},
+		"JsonResult«CommPager«MesgItemList»»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/CommPager«MesgItemList»"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"PageSearch«NoticeSearchEntity»": {
+			"type": "object",
+			"properties": {
+				"count": {
+					"type": "boolean",
+					"example": true,
+					"description": "是否查询数据总条数,默认false"
+				},
+				"order_by": {
+					"type": "string",
+					"example": "XXX desc,XXX asc",
+					"description": "排序字段  "
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "页码,默认1"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"example": 20,
+					"description": "每页条数,默认20"
+				},
+				"search": {
+					"description": "查询条件主体",
+					"$ref": "#/definitions/NoticeSearchEntity"
+				}
+			}
+		},
+		"JsonResultListEduLevelEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/EduLevelEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResultListSchoolInfoEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/SchoolInfoEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"HomeUserInfoEntity": {
+			"type": "object",
+			"required": ["schoolId", "userId", "userInfo", "userName", "userPhoto"],
+			"properties": {
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "人员id"
+				},
+				"userInfo": {
+					"type": "array",
+					"example": "0",
+					"description": "人员信息",
+					"items": {
+						"$ref": "#/definitions/UserInfoEntity"
+					}
+				},
+				"userName": {
+					"type": "string",
+					"example": "0",
+					"description": "姓名"
+				},
+				"userPhoto": {
+					"type": "string",
+					"example": "0",
+					"description": "照片"
+				}
+			}
+		},
+		"VisitorInfoEntity": {
+			"type": "object",
+			"required": ["approvePhoto", "approveState", "dayCount", "identityBegin", "identityEnd", "identityNo", "identityPlace", "invitationCode", "qrCode", "registPhoto", "registTime", "schoolId", "submitTime", "tempId", "touserId", "touserName", "userCount", "userId", "versionNo", "visitorBegin", "visitorBirthday", "visitorCarNo", "visitorCompany", "visitorEnd", "visitorId", "visitorName", "visitorNation", "visitorPhoto", "visitorReason", "visitorSex", "visitorState", "visitorTel", "visitorType"],
+			"properties": {
+				"approvePhoto": {
+					"type": "string",
+					"example": "测试",
+					"description": "门卫审核拍照照片"
+				},
+				"approveState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "门卫审核状态"
+				},
+				"dayCount": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "每天有效次数"
+				},
+				"dicFmtMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"identityBegin": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "证件有效期开始"
+				},
+				"identityEnd": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "证件有效期结束"
+				},
+				"identityNo": {
+					"type": "string",
+					"example": "测试",
+					"description": "身份证号"
+				},
+				"identityPlace": {
+					"type": "string",
+					"example": "测试",
+					"description": "发证机关"
+				},
+				"invitationCode": {
+					"type": "string",
+					"example": "测试",
+					"description": "邀请码"
+				},
+				"orderByFieldMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"qrCode": {
+					"type": "string",
+					"example": "测试",
+					"description": "二维码"
+				},
+				"recordList": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/VisitorRecordEntity"
+					}
+				},
+				"registPhoto": {
+					"type": "string",
+					"example": "测试",
+					"description": "登记拍照照片"
+				},
+				"registTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "终端登记时间"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"submitTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "提交时间"
+				},
+				"tempId": {
+					"type": "string",
+					"example": "测试",
+					"description": "临时ID（对应终端生成的临时访客）"
+				},
+				"touserId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "被访人"
+				},
+				"touserName": {
+					"type": "string",
+					"example": "测试",
+					"description": "被访人名"
+				},
+				"userCount": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "随访人数"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "访客id"
+				},
+				"versionNo": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "版本号"
+				},
+				"visitorBegin": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "开始时间"
+				},
+				"visitorBirthday": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "出生日期"
+				},
+				"visitorCarNo": {
+					"type": "string",
+					"example": "测试",
+					"description": "来访车牌"
+				},
+				"visitorCompany": {
+					"type": "string",
+					"example": "测试",
+					"description": "来访单位"
+				},
+				"visitorEnd": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "结束时间"
+				},
+				"visitorId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "访客计划id"
+				},
+				"visitorName": {
+					"type": "string",
+					"example": "测试",
+					"description": "访客人员"
+				},
+				"visitorNation": {
+					"type": "string",
+					"example": "测试",
+					"description": "民族"
+				},
+				"visitorPhoto": {
+					"type": "string",
+					"example": "0",
+					"description": "档案照片"
+				},
+				"visitorReason": {
+					"type": "string",
+					"example": "测试",
+					"description": "来访原因"
+				},
+				"visitorSex": {
+					"type": "string",
+					"example": "测试",
+					"description": "性别"
+				},
+				"visitorState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "访问状态"
+				},
+				"visitorTel": {
+					"type": "string",
+					"example": "测试",
+					"description": "访客电话"
+				},
+				"visitorType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "来访类型"
+				}
+			}
+		},
+		"PageSearchLeaveInfoEntity": {
+			"type": "object",
+			"properties": {
+				"count": {
+					"type": "boolean",
+					"example": true,
+					"description": "是否查询数据总条数,默认false"
+				},
+				"order_by": {
+					"type": "string",
+					"example": "XXX desc,XXX asc",
+					"description": "排序字段  "
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "页码,默认1"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"example": 20,
+					"description": "每页条数,默认20"
+				},
+				"search": {
+					"description": "查询条件主体",
+					"$ref": "#/definitions/LeaveInfoEntity"
+				}
+			}
+		},
+		"JsonResultLeaveApplySumEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/LeaveApplySumEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"ParentInfoEntity": {
+			"type": "object",
+			"properties": {
+				"bandingOrder": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"ctDate": {
+					"type": "string"
+				},
+				"ctUserId": {
+					"type": "string"
+				},
+				"identityCard": {
+					"type": "string"
+				},
+				"isBandingApp": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"parentDep": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"parentDepName": {
+					"type": "string"
+				},
+				"parentId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"parentName": {
+					"type": "string"
+				},
+				"parentOccu": {
+					"type": "string"
+				},
+				"parentRela": {
+					"type": "string"
+				},
+				"parentTele": {
+					"type": "string"
+				},
+				"roleNos": {
+					"type": "string"
+				},
+				"sex": {
+					"type": "string"
+				},
+				"studentId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userInfo": {
+					"$ref": "#/definitions/JsonMapEntityNew"
+				},
+				"userPassword": {
+					"type": "string"
+				}
+			}
+		},
+		"UserTelAlterEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "string"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userTel": {
+					"type": "string"
+				}
+			}
+		},
+		"VisitorInfoShortEntity": {
+			"type": "object",
+			"required": ["devId", "identityNo", "schoolId", "submitTime", "userCount", "visitorId", "visitorName", "visitorReason", "visitorTel", "visitorType"],
+			"properties": {
+				"devId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "设备编号"
+				},
+				"identityNo": {
+					"type": "string",
+					"example": "测试",
+					"description": "身份证号"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"submitTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "提交时间"
+				},
+				"userCount": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "随访人数"
+				},
+				"visitorId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "访客计划id"
+				},
+				"visitorName": {
+					"type": "string",
+					"example": "测试",
+					"description": "访客人员"
+				},
+				"visitorReason": {
+					"type": "string",
+					"example": "测试",
+					"description": "来访原因"
+				},
+				"visitorTel": {
+					"type": "string",
+					"example": "测试",
+					"description": "访客电话"
+				},
+				"visitorType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "来访类型"
+				}
+			}
+		},
+		"CommPagerUserRecordEntity": {
+			"type": "object",
+			"properties": {
+				"curren_records": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码记录数"
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"description": "每页容量"
+				},
+				"records": {
+					"type": "array",
+					"description": "数据记录",
+					"items": {
+						"$ref": "#/definitions/UserRecordEntity"
+					}
+				},
+				"total_page": {
+					"type": "integer",
+					"format": "int32",
+					"description": "总页数"
+				},
+				"total_record": {
+					"type": "integer",
+					"format": "int64",
+					"description": "总条数"
+				}
+			}
+		},
+		"JsonResultCommPagerVisitorInfoEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/CommPagerVisitorInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"VisitorRecordEntity": {
+			"type": "object",
+			"required": ["approvalState", "deviceId", "doorId", "doorName", "idenData", "idenType", "photoPath", "placeId", "placeName", "recordFx", "recordId", "recordNo", "recordTime", "recordType", "schoolId", "schoolName", "visitorId", "visitorType"],
+			"properties": {
+				"approvalState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "审核状态"
+				},
+				"deviceId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "设备id"
+				},
+				"dicFmtMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"doorId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "门ID"
+				},
+				"doorName": {
+					"type": "string",
+					"example": "测试",
+					"description": "门名称"
+				},
+				"idenData": {
+					"type": "object",
+					"example": "\"测试\"",
+					"description": "识别数据"
+				},
+				"idenType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "识别方式"
+				},
+				"orderByFieldMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"photoPath": {
+					"type": "string",
+					"example": "测试",
+					"description": "照片"
+				},
+				"placeId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "场所id"
+				},
+				"placeName": {
+					"type": "string",
+					"example": "测试",
+					"description": "场所名称"
+				},
+				"recordFx": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "访客记录方向"
+				},
+				"recordId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "记录id"
+				},
+				"recordNo": {
+					"type": "string",
+					"example": "测试",
+					"description": "记录流水号"
+				},
+				"recordTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "记录时间"
+				},
+				"recordType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "记录类型"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校ID"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "测试",
+					"description": "学校名"
+				},
+				"tempId": {
+					"type": "string"
+				},
+				"visitorId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "访客id"
+				},
+				"visitorType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "来访类型"
+				}
+			}
+		},
+		"PageSearchVisitorInfoEntity": {
+			"type": "object",
+			"properties": {
+				"count": {
+					"type": "boolean",
+					"example": true,
+					"description": "是否查询数据总条数,默认false"
+				},
+				"order_by": {
+					"type": "string",
+					"example": "XXX desc,XXX asc",
+					"description": "排序字段  "
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "页码,默认1"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"example": 20,
+					"description": "每页条数,默认20"
+				},
+				"search": {
+					"description": "查询条件主体",
+					"$ref": "#/definitions/VisitorInfoEntity"
+				}
+			}
+		},
+		"EduLevelEntity": {
+			"type": "object",
+			"required": ["eduId", "eduName", "schoolId", "schoolName"],
+			"properties": {
+				"eduId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学级id"
+				},
+				"eduName": {
+					"type": "string",
+					"example": "0",
+					"description": "学级名"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "学校id"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "烟台三中",
+					"description": "学校名称"
+				}
+			}
+		},
+		"PageSearchCustomEntity": {
+			"type": "object",
+			"properties": {
+				"count": {
+					"type": "boolean",
+					"example": true,
+					"description": "是否查询数据总条数,默认false"
+				},
+				"order_by": {
+					"type": "string",
+					"example": "XXX desc,XXX asc",
+					"description": "排序字段  "
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "页码,默认1"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"example": 20,
+					"description": "每页条数,默认20"
+				},
+				"search": {
+					"description": "查询条件主体",
+					"$ref": "#/definitions/CustomEntity"
+				}
+			}
+		},
+		"SchoolInfoEntity": {
+			"type": "object",
+			"required": ["classFormat", "className", "demoName", "deptId", "gradeFormat", "gradeName", "initFlag", "schoolId", "schoolLogo", "schoolName", "schoolStay", "schoolSystem", "systemName"],
+			"properties": {
+				"classFormat": {
+					"type": "string",
+					"example": "1",
+					"description": "班级格式"
+				},
+				"className": {
+					"type": "string",
+					"example": "一班.二班.三班",
+					"description": "班级格式"
+				},
+				"ctUserId": {
+					"type": "string"
+				},
+				"demoName": {
+					"type": "string",
+					"example": "测试",
+					"description": "查询示例"
+				},
+				"deptId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "机构编号"
+				},
+				"gradeEnd": {
+					"type": "integer",
+					"format": "int32",
+					"example": 2018,
+					"description": "最晚入学年份"
+				},
+				"gradeFormat": {
+					"type": "string",
+					"example": "1",
+					"description": "年级格式"
+				},
+				"gradeName": {
+					"type": "string",
+					"example": "按照入学年份(如:2015级)",
+					"description": "年级格式"
+				},
+				"initFlag": {
+					"type": "string",
+					"example": "1",
+					"description": "是否初始化"
+				},
+				"ltUserId": {
+					"type": "string"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 10000,
+					"description": "学校编号"
+				},
+				"schoolLogo": {
+					"type": "string",
+					"example": "LOGO",
+					"description": "学校LOGO"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "测试学校",
+					"description": "学校名称"
+				},
+				"schoolStay": {
+					"type": "string",
+					"example": "住宿",
+					"description": "住宿情况"
+				},
+				"schoolSystem": {
+					"type": "string",
+					"example": "1,5;2,4;3,3",
+					"description": "学校学制"
+				},
+				"schoolSystemOld": {
+					"type": "string"
+				},
+				"systemName": {
+					"type": "string",
+					"example": "小学学制,五年制;初中学制,四年制;高中学制,三年制",
+					"description": "学校学制"
+				}
+			}
+		},
+		"NoticeSearchEntity": {
+			"type": "object",
+			"required": ["noticeTitle", "userId"],
+			"properties": {
+				"noticeTitle": {
+					"type": "string",
+					"description": "通知标题"
+				},
+				"userId": {
+					"type": "string",
+					"description": "消息大类"
+				}
+			}
+		},
+		"GradeEntity": {
+			"type": "object",
+			"required": ["eduId", "eduName", "gradeId", "gradeName", "schoolId", "schoolName"],
+			"properties": {
+				"eduId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学级id"
+				},
+				"eduName": {
+					"type": "string",
+					"example": "高中",
+					"description": "学级名称"
+				},
+				"gradeId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "年级id"
+				},
+				"gradeName": {
+					"type": "string",
+					"example": "一年级",
+					"description": "年级名称"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "烟台三中",
+					"description": "学校名称"
+				}
+			}
+		},
+		"UserAdviceEntity": {
+			"type": "object",
+			"required": ["adviceContext", "ctDate", "id", "schoolId", "schoolName", "userId", "userName"],
+			"properties": {
+				"adviceContext": {
+					"type": "string",
+					"example": "0",
+					"description": "意见内容"
+				},
+				"ctDate": {
+					"example": "0",
+					"description": "发布时间",
+					"$ref": "#/definitions/OffsetDateTime"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "自增id"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "0",
+					"description": "学校名"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "人员id"
+				},
+				"userName": {
+					"type": "string",
+					"example": "0",
+					"description": "人员名称"
+				}
+			}
+		},
+		"LeaveFlowEntity": {
+			"type": "object",
+			"required": ["flowCotent", "flowId", "flowState", "flowTime", "flowUserId", "flowUserName", "leaveId", "schoolId", "schoolName"],
+			"properties": {
+				"dicFmtMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"flowCotent": {
+					"type": "string",
+					"example": "测试",
+					"description": "意见"
+				},
+				"flowId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "流程id"
+				},
+				"flowState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "状态"
+				},
+				"flowTime": {
+					"type": "string",
+					"format": "date-time",
+					"example": "2018-7-16 13:42:45",
+					"description": "时间"
+				},
+				"flowUserId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "流程人员"
+				},
+				"flowUserName": {
+					"type": "string",
+					"example": "测试",
+					"description": "流程人员名"
+				},
+				"leaveId": {
+					"type": "string",
+					"example": "测试",
+					"description": "请假id"
+				},
+				"orderByFieldMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "学校id"
+				},
+				"schoolName": {
+					"type": "string",
+					"example": "测试",
+					"description": "学校名"
+				}
+			}
+		},
+		"HomeMesgCountEntity": {
+			"type": "object",
+			"required": ["mesgCount"],
+			"properties": {
+				"mesgCount": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息数量"
+				}
+			}
+		},
+		"NoticeReadCountEntity": {
+			"type": "object",
+			"properties": {
+				"nonReadCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"readCount": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"OffsetDateTime": {
+			"type": "object",
+			"properties": {
+				"offset": {
+					"$ref": "#/definitions/ZoneOffset"
+				}
+			}
+		},
+		"PushParam": {
+			"type": "object",
+			"properties": {
+				"extParam": {
+					"type": "string"
+				},
+				"mainInfo": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/PushMould"
+					}
+				},
+				"paramStr": {
+					"type": "string"
+				},
+				"receiveInfo": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/PushMould"
+					}
+				},
+				"sendUser": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"target": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"type": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"typeDetail": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"JsonResultLoginResp": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/LoginResp"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResult«NoticeInfoEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/NoticeInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResultListClassEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/ClassEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"UserIdEntity": {
+			"type": "object",
+			"required": ["addLx", "stuId", "userId", "userIdentity", "userTel", "userType"],
+			"properties": {
+				"addLx": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "区分家长邀请0、添加学生1"
+				},
+				"classId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"stuId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "id"
+				},
+				"stuPhoto": {
+					"type": "string"
+				},
+				"userCard": {
+					"type": "string"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "人员id"
+				},
+				"userIdentity": {
+					"type": "string",
+					"example": "0",
+					"description": "身份证"
+				},
+				"userNo": {
+					"type": "string"
+				},
+				"userTel": {
+					"type": "string",
+					"example": "0",
+					"description": "手机号"
+				},
+				"userType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "档案类型"
+				}
+			}
+		},
+		"PageSearch«MesgSearchEntity»": {
+			"type": "object",
+			"properties": {
+				"count": {
+					"type": "boolean",
+					"example": true,
+					"description": "是否查询数据总条数,默认false"
+				},
+				"order_by": {
+					"type": "string",
+					"example": "XXX desc,XXX asc",
+					"description": "排序字段  "
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "页码,默认1"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"example": 20,
+					"description": "每页条数,默认20"
+				},
+				"search": {
+					"description": "查询条件主体",
+					"$ref": "#/definitions/MesgSearchEntity"
+				}
+			}
+		},
+		"JsonResultEduLevelEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/EduLevelEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"DelParentEntity": {
+			"type": "object",
+			"required": ["parentId"],
+			"properties": {
+				"parentId": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "id"
+				}
+			}
+		},
+		"UserInfoSearchEntity": {
+			"type": "object",
+			"required": ["cardState"],
+			"properties": {
+				"cardState": {
+					"type": "integer",
+					"format": "int32",
+					"example": 1,
+					"description": "卡片状态 0：未发卡；1已发卡"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"searchType": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userDep": {
+					"type": "array",
+					"items": {
+						"type": "integer",
+						"format": "int32"
+					}
+				},
+				"userDepStr": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userDepname": {
+					"type": "string"
+				},
+				"userDepnameLike": {
+					"type": "string"
+				},
+				"userName": {
+					"type": "string"
+				},
+				"userNameLike": {
+					"type": "string"
+				},
+				"userNo": {
+					"type": "string"
+				},
+				"userNoLike": {
+					"type": "string"
+				},
+				"userTel": {
+					"type": "string"
+				},
+				"userTelLike": {
+					"type": "string"
+				}
+			}
+		},
+		"AccountPwdEntity": {
+			"type": "object",
+			"properties": {
+				"newPass": {
+					"type": "string"
+				},
+				"oldPass": {
+					"type": "string"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"CommPager«NoticeInfoEntity»": {
+			"type": "object",
+			"properties": {
+				"curren_records": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码记录数"
+				},
+				"page_index": {
+					"type": "integer",
+					"format": "int32",
+					"description": "当前页码"
+				},
+				"page_size": {
+					"type": "integer",
+					"format": "int32",
+					"description": "每页容量"
+				},
+				"records": {
+					"type": "array",
+					"description": "数据记录",
+					"items": {
+						"$ref": "#/definitions/NoticeInfoEntity"
+					}
+				},
+				"total_page": {
+					"type": "integer",
+					"format": "int32",
+					"description": "总页数"
+				},
+				"total_record": {
+					"type": "integer",
+					"format": "int64",
+					"description": "总条数"
+				}
+			}
+		},
+		"NoticeIdEntity": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"stringId": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"JsonResult«List«ParentListEntity»»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/ParentListEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"AccountEntity": {
+			"type": "object",
+			"required": ["userNo"],
+			"properties": {
+				"appNo": {
+					"type": "string"
+				},
+				"ctDate": {
+					"type": "string"
+				},
+				"ctUserId": {
+					"type": "string"
+				},
+				"deptId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"deptName": {
+					"type": "string"
+				},
+				"dutyName": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"identityCardNo": {
+					"type": "string"
+				},
+				"ltDate": {
+					"type": "string"
+				},
+				"ltUserId": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"phoneNo": {
+					"type": "string"
+				},
+				"roleNos": {
+					"type": "string"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"sex": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"useStatusId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userInfo": {
+					"$ref": "#/definitions/JsonMapEntity"
+				},
+				"userName": {
+					"type": "string"
+				},
+				"userNo": {
+					"type": "string",
+					"example": "10001",
+					"description": "工号"
+				},
+				"userRemark": {
+					"type": "string"
+				},
+				"userType": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"ZoneOffset": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"totalSeconds": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"HomeMesgDetailEntity": {
+			"type": "object",
+			"required": ["mesgType", "mesgphoto", "relaData"],
+			"properties": {
+				"mesgType": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "消息类型"
+				},
+				"mesgphoto": {
+					"type": "string",
+					"example": "0",
+					"description": "消息图片"
+				},
+				"relaData": {
+					"type": "object",
+					"example": "0",
+					"description": "业务数据"
+				}
+			}
+		},
+		"JsonResultListGradeEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/GradeEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"TeacherInfoEntity": {
+			"type": "object",
+			"required": ["userDep", "userDepname", "userDuty", "userName", "userNo", "userPhoto", "userSerial", "userTel"],
+			"properties": {
+				"className": {
+					"type": "string"
+				},
+				"dicFmtMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"isBandingApp": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"orderByFieldMap": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "string"
+					}
+				},
+				"teacherClass": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userDep": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "部门id"
+				},
+				"userDepname": {
+					"type": "string",
+					"example": "0",
+					"description": "部门名称"
+				},
+				"userDuty": {
+					"type": "string",
+					"example": "0",
+					"description": "职务"
+				},
+				"userName": {
+					"type": "string",
+					"example": "0",
+					"description": "姓名"
+				},
+				"userNo": {
+					"type": "string",
+					"example": "0",
+					"description": "工号"
+				},
+				"userPhoto": {
+					"type": "string",
+					"example": "0",
+					"description": "图片地址"
+				},
+				"userSerial": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "档案编号"
+				},
+				"userTel": {
+					"type": "string",
+					"example": "0",
+					"description": "联系电话"
+				}
+			}
+		},
+		"JsonResultListTeacherInfoEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/TeacherInfoEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"UserReqEntity": {
+			"type": "object",
+			"required": ["userNo"],
+			"properties": {
+				"appNo": {
+					"type": "string"
+				},
+				"className": {
+					"type": "string"
+				},
+				"ctDate": {
+					"type": "string"
+				},
+				"ctUserId": {
+					"type": "string"
+				},
+				"deptId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"deptName": {
+					"type": "string"
+				},
+				"dutyName": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"identityCardNo": {
+					"type": "string"
+				},
+				"ltDate": {
+					"type": "string"
+				},
+				"ltUserId": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"phoneNo": {
+					"type": "string"
+				},
+				"roleNos": {
+					"type": "string"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"schoolName": {
+					"type": "string"
+				},
+				"sex": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"studentId": {
+					"type": "string"
+				},
+				"useStatusId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userInfo": {
+					"$ref": "#/definitions/JsonMapEntity"
+				},
+				"userName": {
+					"type": "string"
+				},
+				"userNo": {
+					"type": "string",
+					"example": "10001",
+					"description": "工号"
+				},
+				"userPhoto": {
+					"type": "string"
+				},
+				"userRemark": {
+					"type": "string"
+				},
+				"userType": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"JsonResult«NoticeUserListEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/NoticeUserListEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResult«HomeMesgDetailEntity»": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/HomeMesgDetailEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"NoticeUserListEntity": {
+			"type": "object",
+			"properties": {
+				"nonReadList": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Map«string,object»"
+					}
+				},
+				"readList": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Map«string,object»"
+					}
+				}
+			}
+		},
+		"JsonResultint": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "integer",
+					"format": "int32",
+					"description": "具体的业务数据"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"UserAllStudentStateEntity": {
+			"type": "object",
+			"properties": {
+				"all": {
+					"type": "integer",
+					"format": "int32",
+					"description": "全部人数"
+				},
+				"in": {
+					"type": "integer",
+					"format": "int32",
+					"description": "在校人数"
+				},
+				"late": {
+					"type": "integer",
+					"format": "int32",
+					"description": "迟到人数"
+				},
+				"leave": {
+					"type": "integer",
+					"format": "int32",
+					"description": "请假人数"
+				},
+				"list": {
+					"type": "array",
+					"description": "任务列表",
+					"items": {
+						"$ref": "#/definitions/UserRecordAnalysisRedisEntity"
+					}
+				},
+				"out": {
+					"type": "integer",
+					"format": "int32",
+					"description": "离校人数"
+				}
+			}
+		},
+		"JsonResultCommPagerLeaveInfoEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/CommPagerLeaveInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"NoticeInfoEntity": {
+			"type": "object",
+			"required": ["ctUserId", "id", "noticeContent", "noticeDate", "noticePhoto", "noticeTitle", "schoolId", "sendType"],
+			"properties": {
+				"ctUserId": {
+					"type": "string",
+					"description": "创建者id"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int32",
+					"description": "通知id"
+				},
+				"noticeContent": {
+					"type": "string",
+					"description": "通知内容"
+				},
+				"noticeDate": {
+					"description": "通知发布日期",
+					"$ref": "#/definitions/Timestamp"
+				},
+				"noticePhoto": {
+					"type": "string",
+					"description": "通知图片"
+				},
+				"noticeTitle": {
+					"type": "string",
+					"description": "通知标题"
+				},
+				"schoolId": {
+					"type": "integer",
+					"format": "int32",
+					"description": "学校id"
+				},
+				"sendType": {
+					"type": "integer",
+					"format": "int32",
+					"description": "发送对象类别"
+				}
+			}
+		},
+		"ParentListEntity": {
+			"type": "object",
+			"properties": {
+				"userId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userName": {
+					"type": "string"
+				},
+				"userRela": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"userTel": {
+					"type": "string"
+				}
+			}
+		},
+		"JsonResultUserInfoEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/UserInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResultVisitorInfoEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/VisitorInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"HomeTeacherInfoEntity": {
+			"type": "object",
+			"required": ["all", "approveCount", "in", "late", "leave", "out"],
+			"properties": {
+				"all": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "总人数"
+				},
+				"approveCount": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "待审批"
+				},
+				"in": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "在校"
+				},
+				"late": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "迟到"
+				},
+				"leave": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "请假"
+				},
+				"out": {
+					"type": "integer",
+					"format": "int32",
+					"example": 0,
+					"description": "离校"
+				}
+			}
+		},
+		"JsonResultLeaveInfoEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"description": "具体的业务数据",
+					"$ref": "#/definitions/LeaveInfoEntity"
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		},
+		"JsonResultListUserRecordAnalysisRedisEntity": {
+			"type": "object",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"description": "状态码"
+				},
+				"data": {
+					"type": "array",
+					"description": "具体的业务数据",
+					"items": {
+						"$ref": "#/definitions/UserRecordAnalysisRedisEntity"
+					}
+				},
+				"msg": {
+					"type": "string",
+					"description": "状态码描述信息"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,85 @@
+{{#imports}}
+/// <reference path="{{&.}}" />
+{{/imports}}
+
+import Request = require("request");
+import { C4RESTFulClient, RequestOption } from "c4restfulclient";
+import { C4Logger} from 'c4logger';
+import { C4DependencyService, C4APIsClient } from "c4apisclient";
+
+{{#definitions}}
+export type {{&name}} = {{#tsType}}{{> type}}{{/tsType}};
+{{/definitions}}
+
+/**
+ * {{&description}}
+ * @class {{&className}}
+ * @param {(string)} [domainOrOptions] - The project domain.
+ */
+export default class {{&className}} extends C4APIsClient {
+
+    /**
+     * 
+     * @param key 实例ID
+     * @param domain 指定域名
+     * @param logger 日志对象
+     */
+    constructor(key : string, domain?: string, private logger?: any) {
+        super(key);
+    }
+
+    /**
+     * 获取当前可用的服务的Host和Port
+     * @param key 当前实例的ID
+     */
+    getDomain(key : string) {
+        if (this.m_Service) {
+            return this.m_Service.getDomain(key);
+        }
+        return "";
+    }
+
+    private async request(method : string, url : string, headers : any, qs : any, body : any, form : any, formData : any, fileName ?: string) {
+        if (this.m_Logger) {
+            this.m_Logger.info(`Call ${method} ${url}`);
+        }
+        if (this.m_RESTClient === null) {
+            if (this.m_Logger) {
+                (<any>this.m_Logger).err ?  (<any>this.m_Logger).err('RESTFulClient not init.') : (<any>this.m_Logger).error('RESTFulClient not init.');
+                return null;
+            } else {
+                throw new Error('RESTFulClient not init.');
+            }
+        }
+        let curRequestOp : RequestOption = {};
+        if (qs) {
+            curRequestOp.qs     = qs;
+        }
+        if (method.toLowerCase() !== "get" && body) {
+            curRequestOp.body   = body;
+        }
+        if (formData) {
+            curRequestOp.formData   = formData;
+        } else if (form) {
+            curRequestOp.form       = form;
+        }
+
+        if (fileName) {
+            curRequestOp.downloadFileName = fileName;
+        }
+
+        return await (<C4RESTFulClient>this.m_RESTClient).request(url, method.toLowerCase(), curRequestOp).catch((err) => {
+            if (this.m_Logger) {
+                (<any>this.m_Logger).err ?  (<any>this.m_Logger).err(err) : (<any>this.m_Logger).error(err);
+                return null;
+            } else {
+                throw err;
+            }
+        });
+    }
+
+{{#methods}}
+    {{> method}}
+
+{{/methods}}
+}

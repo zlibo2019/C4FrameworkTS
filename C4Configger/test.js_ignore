@@ -1,0 +1,135 @@
+// var Yaml    = require('js-yaml');
+// var FS      = require('fs');
+// var AVJ     = require('ajv');
+
+// function ParseJSObj(obj) {
+//     for (let pop in obj) {
+//         if (Object.prototype.toString.call(obj[pop]) === '[object Object]') {
+//             // Object
+//         } else if (Object.prototype.toString.call(obj[pop] === '[object Array]')) {
+//             // array
+//         } else if (Object.prototype.toString.call(obj[pop] === '[object Function]')) {
+//             // function
+//         } else if (Object.prototype.toString.call(obj[pop] === '[object Null]')) {
+//             // null
+//         } else if (Object.prototype.toString.call(obj[pop] === '[object String]')) {
+//             // string
+//         } else if (Object.prototype.toString.call(obj[pop] === '[object Boolean]')) {
+//             // boolean
+//         } else if (Object.prototype.toString.call(obj[pop] === '[object Number]')) {
+//             // Number
+//         } else if (Object.prototype.toString.call(obj[pop] === '[object Undefined]')) {
+//             // undefined
+//         }
+//     }
+// }
+
+// function Test() {
+//     try {
+//         let doc = null;
+//         doc = Yaml.safeLoad(FS.readFileSync('./Config/Configger.yml', 'utf8'), {
+//             schema : Yaml.DEFAULT_FULL_SCHEMA
+//         });
+//         console.log(doc);
+//         let CurAVJ = new AVJ();
+//         let schemaData = FS.readFileSync('./ConfiggerConfig.json', 'utf8');
+//         let schemaJSON = JSON.parse(schemaData);
+//         let Validate = CurAVJ.compile(schemaJSON);
+//         let Valid = Validate(doc);
+//         if (!Valid) {
+//             console.log('123')
+//         } else {
+//             console.log('456');
+//         }
+//         for (let pop in doc) {
+//             if (Object.prototype.toString.call(doc[pop]) === '[object Object]') {
+//                 // Object
+//             } else if (Object.prototype.toString.call(doc[pop] === '[object Array]')) {
+//                 // array
+//             } else if (Object.prototype.toString.call(doc[pop] === '[object Function]')) {
+//                 // function
+//             }
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+// Test();
+
+"use strict";
+
+// let C4RemoteLoader = require('./out/C4RemoteLoader');
+
+// async function Launch() {
+//     let CurLoader = new C4RemoteLoader.default();
+//     CurLoader.init({
+//         user : "",
+//         password : ""
+//     });
+
+//     await CurLoader.load({
+//         ConfigService : {
+//             host : 'http://localhost:7001',
+//             user : '',
+//             pass : ''
+//         },
+//         AppName : "app01",
+//         Profile : [ "test", "dev" ], 
+//     }).catch((err) => {
+//         console.log(err);
+//     });
+// }
+
+// Launch();
+
+var Source = {
+    "ConfigDir[0].Path":"./AppConfig/",
+    "ConfigDir[0].main":"App.yml",
+    "ConfigDir[1].Path":"./TestConfig/",
+    "ConfigDir[1].main":"test.yml",
+    "ConfigService.host":"http://127.0.0.1:7001",
+    "ConfigService.user":"username",
+    "ConfigService.pass":"password",
+    "ConfigService.abc":"@link://{123456}",
+    "ConfigService.test.a":123,
+    "ConfigService.test.b[0].name":"aaa",
+    "ConfigService.test.b[0].age":12,
+    "ConfigService.test.b[1].name":"bbb",
+    "ConfigService.test.b[1].age":22,
+    "ConfigService.test.c":"abcde"
+}
+
+let Doc = {};
+for (let key in Source) {
+    console.log(key + " : " + Source[key]);
+    let Paths = key.split('.');
+    // 先判断是否是array
+    // 如果是，获取index
+    let CurDoc = Doc;
+    for (let i = 0; i < Paths.length - 1; i++) {
+        let CurKey = Paths[i];
+        let CurMatch = CurKey.match(/\[\d+\]/g);
+        if (CurMatch !== null) {
+            CurKey   = CurKey.replace(/\[\d+\]/g, '');
+            let CurIndex = parseInt(CurMatch[0].replace('[', '').replace(']', ''));
+            if (CurDoc[CurKey] === undefined
+                || !Array.isArray(CurDoc[CurKey])) {
+                CurDoc[CurKey] = [];
+            }
+            if (CurDoc[CurKey][CurIndex] === undefined) {
+                CurDoc[CurKey][CurIndex] = {};
+            }
+            CurDoc = CurDoc[CurKey][CurIndex];
+        } else {
+            if (CurDoc[CurKey] === undefined) {
+                CurDoc[CurKey] = {};
+            }
+            CurDoc = CurDoc[CurKey];
+        }
+    }
+    CurDoc[Paths[Paths.length - 1]] = Source[key];
+}
+
+console.log(JSON.stringify(Doc))
+

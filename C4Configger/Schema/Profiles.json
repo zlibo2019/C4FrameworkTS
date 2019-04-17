@@ -1,0 +1,16 @@
+{
+  "$id": "httpo://weds.com/C4Framework/Profiles.json",
+  "type": [
+    "string",
+    "array"
+  ],
+  "items": {
+    "type": "string",
+    "enum": [
+      "dev",
+      "test",
+      "prod",
+      "default"
+    ]
+  }
+}

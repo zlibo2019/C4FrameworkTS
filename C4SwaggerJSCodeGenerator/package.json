@@ -1,0 +1,32 @@
+{
+  "name": "c4swaggerjscodegenerator",
+  "version": "1.0.3",
+  "description": "C4Framework Swagger JSCodeGenerator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "Swagger",
+    "JSCodeGenerator"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/js-beautify": "0.0.31",
+    "@types/js-yaml": "^3.11.2",
+    "@types/lodash": "^4.14.110",
+    "@types/mustache": "^0.8.31",
+    "@types/node": "^10.5.1",
+    "c4apisclient": "^1.0.2",
+    "commander": "^2.16.0",
+    "js-beautify": "^1.7.5",
+    "js-yaml": "^3.12.0",
+    "jshint": "^2.9.5",
+    "lodash": "^4.17.10",
+    "mustache": "^2.3.0",
+    "update-notifier": "^2.5.0"
+  }
+}

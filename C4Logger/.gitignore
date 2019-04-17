@@ -1,0 +1,8 @@
+/node_modules/*
+!/node_modules/@types
+/logs/*
+/clogs
+/coverage
+/.vscode
+/.vscode/*
+/mochawesome-report/*

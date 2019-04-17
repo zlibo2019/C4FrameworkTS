@@ -1,0 +1,16 @@
+export declare function isNullOrUndefined(obj: any): boolean;
+export declare function isEmptyObj(obj: any): boolean;
+export declare function isEmptyStr(str: any): boolean;
+export declare function isEmptyArray(array: any): boolean;
+export declare function isArray(obj: any): boolean;
+export declare function isNumber(obj: any): boolean;
+export declare function isInt(obj: any): boolean;
+export declare function isBoolean(obj: any): boolean;
+export declare function isString(obj: any): boolean;
+export declare function isNull(obj: any): boolean;
+export declare function isUndefined(obj: any): boolean;
+export declare function isObject(obj: any): boolean;
+export declare function isFunction(obj: any): boolean;
+export declare function checkType(obj: any, Type: any): boolean;
+export declare function objectTrav(obj: any, cb?: (obj: any, deep: number, key: string, type: string, value: any) => void): Promise<void>;
+export declare function configObj2JSObj(confiObj: any): any;

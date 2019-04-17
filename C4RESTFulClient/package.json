@@ -1,0 +1,27 @@
+{
+  "name": "c4restfulclient",
+  "version": "1.0.7",
+  "description": "C4Framework RESTFul Client",
+  "main": "out/main.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "RESTFul",
+    "Client"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/mixin-deep": "^1.0.0",
+    "@types/node-rest-client": "^1.0.2",
+    "@types/request": "^2.47.0",
+    "c4utils": "^1.0.3",
+    "clone-deep": "^4.0.0",
+    "mixin-deep": "^1.3.1",
+    "node-rest-client": "^3.1.0",
+    "request": "^2.85.0"
+  }
+}

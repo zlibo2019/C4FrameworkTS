@@ -1,0 +1,16 @@
+{
+  "name": "c4schema",
+  "version": "1.0.4",
+  "description": "C4Framework AJV Schemas",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "AJV",
+    "Schema"
+  ],
+  "author": "Sextant",
+  "license": "MIT"
+}

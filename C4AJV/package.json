@@ -1,0 +1,27 @@
+{
+  "name": "c4ajv",
+  "version": "1.0.5",
+  "description": "C4Framework AJV",
+  "main": "out/C4AJV.js",
+  "typings": "src/C4AJV.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "AJV"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/ajv": "^1.0.0",
+    "@types/js-yaml": "^3.10.1",
+    "@types/node": "^9.4.6",
+    "@types/strip-json-comments": "0.0.30",
+    "ajv": "^6.2.1",
+    "c4utils": "^1.0.5",
+    "co": "^4.6.0",
+    "js-yaml": "^3.11.0",
+    "strip-json-comments": "^2.0.1"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "c4loadbalancer",
+  "version": "1.0.2",
+  "description": "C4Framework Load Balancer",
+  "main": "out/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "Load",
+    "Balancer"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/hashring": "^1.0.0",
+    "@types/node": "^9.4.7",
+    "c4utils": "^1.0.5",
+    "hashring": "^3.2.0"
+  }
+}

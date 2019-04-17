@@ -1,0 +1,190 @@
+{{&methodName}}URL(parameters: {
+{{#parameters}}{{^isSingleton}}'{{&camelCaseName}}'{{&cardinality}}: {{> type}},
+{{/isSingleton}}{{/parameters}}
+$queryParameters?: any, 
+$domain?: string
+}): string {
+    let queryParameters: any = {};
+    const domain = parameters.$domain ? parameters.$domain : this.getDomain(this.m_InstanceID);
+    if (domain === "") {
+        if (this.m_Logger) {
+            (<any>this.m_Logger).err ?  (<any>this.m_Logger).err('Invalid domain.') : (<any>this.m_Logger).error('Invalid domain.');
+            return "";
+        } else {
+            throw new Error('Invalid domain.');
+        }
+    }
+    let path = '{{&path}}';
+    {{#parameters}}
+        {{#isQueryParameter}}
+            {{#isSingleton}}
+                queryParameters['{{&name}}'] = '{{&singleton}}';
+            {{/isSingleton}}
+            {{^isSingleton}}
+                {{#isPatternType}}
+                    Object.keys(parameters).forEach(function(parameterName) {
+                    if(new RegExp('{{&pattern}}').test(parameterName)){
+                    queryParameters[parameterName] = parameters[parameterName];
+                    }
+                    });
+                {{/isPatternType}}
+                {{^isPatternType}}
+                    if(parameters['{{&camelCaseName}}'] !== undefined){
+                    queryParameters['{{&name}}'] = parameters['{{&camelCaseName}}'];
+                    }
+                {{/isPatternType}}
+            {{/isSingleton}}
+        {{/isQueryParameter}}
+
+        {{#isPathParameter}}
+            path = path.replace('{{=<% %>=}}{<%&name%>}<%={{ }}=%>', `${parameters['{{&camelCaseName}}']}`);
+        {{/isPathParameter}}
+    {{/parameters}}
+    
+    if(parameters.$queryParameters) {
+        Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+            queryParameters[parameterName] = parameters.$queryParameters[parameterName];
+        });
+    }
+
+    let keys = Object.keys(queryParameters);
+    return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')): '');
+}
+
+/**
+* {{&summary}}
+* @method
+{{#externalDocs}}
+* @see {@link {{&url}}|{{#description}}{{&description}}{{/description}}{{^description}}External docs{{/description}}}
+{{/externalDocs}}
+* @name {{&className}}#{{&methodName}}
+{{#parameters}}
+    {{^isSingleton}} * @param {{=<% %>=}}{<%&type%>}<%={{ }}=%> {{&camelCaseName}} - {{&description}}{{/isSingleton}}
+{{/parameters}}
+*/
+async {{&methodName}}(parameters: {
+{{#parameters}}{{^isSingleton}}'{{&camelCaseName}}'{{&cardinality}}: {{> type}},
+{{/isSingleton}}
+{{#isMultiPart}}
+    $formData : { [key : string] : any}
+{{/isMultiPart}}
+{{/parameters}}
+{{#isDownloadFile}}
+    $downloadFileName : string,
+{{/isDownloadFile}}
+    $queryParameters?: any,
+    $domain?: string
+}) {
+    const domain = parameters.$domain ? parameters.$domain : this.getDomain(this.m_InstanceID);
+    if (domain === "") {
+        if (this.m_Logger) {
+            (<any>this.m_Logger).err ?  (<any>this.m_Logger).err('Invalid domain.') : (<any>this.m_Logger).error('Invalid domain.');
+            return null;
+        } else {
+            throw new Error('Invalid domain.');
+        }
+    }
+    let path = '{{&path}}';
+    let body: any;
+    let queryParameters: any = {};
+    let headers: any = {};
+    let form: any = {};
+    let formData : any = {};
+    let downloadFileName : string | undefined = undefined;
+
+{{#isDownloadFile}}
+    downloadFileName = parameters.$downloadFileName;
+{{/isDownloadFile}}
+
+{{#headers}}
+    headers['{{&name}}'] = {{&value}};
+{{/headers}}
+
+{{#parameters}}
+
+    {{#isQueryParameter}}
+        {{#isSingleton}}
+            queryParameters['{{&name}}'] = '{{&singleton}}';
+        {{/isSingleton}}
+        {{^isSingleton}}
+            {{#isPatternType}}
+                Object.keys(parameters).forEach(function(parameterName) {
+                    if(new RegExp('{{&pattern}}').test(parameterName)){
+                        queryParameters[parameterName] = parameters[parameterName];
+                    }
+                });
+            {{/isPatternType}}
+            {{^isPatternType}}
+                if(parameters['{{&camelCaseName}}'] !== undefined) {
+                    queryParameters['{{&name}}'] = parameters['{{&camelCaseName}}'];
+                }
+            {{/isPatternType}}
+        {{/isSingleton}}
+    {{/isQueryParameter}}
+
+    {{#isPathParameter}}
+        path = path.replace('{{=<% %>=}}{<%&name%>}<%={{ }}=%>', `${parameters['{{&camelCaseName}}']}`);
+    {{/isPathParameter}}
+
+    {{#isHeaderParameter}}
+        {{#isSingleton}}
+            headers['{{&name}}'] = '{{&singleton}}';
+        {{/isSingleton}}
+        {{^isSingleton}}
+            if(parameters['{{&camelCaseName}}'] !== undefined) {
+                headers['{{&name}}'] = parameters['{{&camelCaseName}}'];
+            }
+        {{/isSingleton}}
+    {{/isHeaderParameter}}
+
+    {{#isBodyParameter}}
+        if(parameters['{{&camelCaseName}}'] !== undefined) {
+            body = parameters['{{&camelCaseName}}'];
+        }
+    {{/isBodyParameter}}
+
+    {{#isFormParameter}}
+        {{#isSingleton}}
+            form['{{&name}}'] = '{{&singleton}}';
+        {{/isSingleton}}
+        {{^isSingleton}}
+            if(parameters['{{&camelCaseName}}'] !== undefined) {
+                form['{{&name}}'] = parameters['{{&camelCaseName}}'];
+            }
+        {{/isSingleton}}
+    {{/isFormParameter}}
+
+    {{#isMultiPart}}
+        form        = undefined;
+        formData    = $formData;
+    {{/isMultiPart}}
+
+    {{#required}}
+        if(parameters['{{&camelCaseName}}'] === undefined) {
+            if (this.m_Logger) {
+                ( < any > this.m_Logger).err ? ( < any > this.m_Logger).err('Missing required {{&paramType}} parameter: {{&camelCaseName}}') : ( < any > this.m_Logger).error('Missing required {{&paramType}} parameter: {{&camelCaseName}}');
+                return null;
+            } else {
+                throw new Error('Missing required {{&paramType}} parameter: {{&camelCaseName}}');
+            }
+        }
+    {{/required}}
+
+{{/parameters}}
+
+if(parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName){
+        queryParameters[parameterName] = parameters.$queryParameters[parameterName];
+    });
+}
+
+
+    return await this.request('{{method}}', domain + path, headers, queryParameters, body, form, formData, downloadFileName).catch((err) => {
+        if (this.m_Logger) {
+            (<any>this.m_Logger).err ?  (<any>this.m_Logger).err(err) : (<any>this.m_Logger).error(err);
+            return null;
+        } else {
+            throw err;
+        }
+    });
+}

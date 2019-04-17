@@ -1,0 +1,22 @@
+{
+  "name": "c4apisclient",
+  "version": "1.0.2",
+  "description": "C4APIsClient",
+  "main": "index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "APIsClient"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "c4eurekaclient": "^1.0.3",
+    "c4loadbalancer": "^1.0.2",
+    "c4logger": "^1.0.2",
+    "c4restfulclient": "^1.0.13"
+  }
+}

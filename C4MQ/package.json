@@ -1,0 +1,24 @@
+{
+  "name": "c4mq",
+  "version": "1.0.10",
+  "description": "C4FrameworkMQ",
+  "main": "out/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "MQ"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/amqp": "^0.2.4",
+    "@types/glob": "^5.0.35",
+    "amqp": "^0.2.6",
+    "c4utils": "^1.0.5",
+    "glob": "^7.1.2",
+    "reflect-metadata": "^0.1.12"
+  }
+}

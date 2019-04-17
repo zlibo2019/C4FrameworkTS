@@ -1,0 +1,20 @@
+{
+  "name": "c4rom",
+  "version": "1.0.0",
+  "description": "C4Framework ROM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "ROM",
+    "Redis"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/ioredis": "^3.2.7",
+    "ioredis": "^3.2.2"
+  }
+}

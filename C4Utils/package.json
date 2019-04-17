@@ -1,0 +1,21 @@
+{
+  "name": "c4utils",
+  "version": "1.0.5",
+  "description": "C4Framework Utils",
+  "main": "out/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C4Framework",
+    "Utils"
+  ],
+  "author": "Sextant",
+  "license": "MIT",
+  "dependencies": {
+    "@types/glob": "^5.0.35",
+    "@types/node": "^9.4.7",
+    "glob": "^7.1.2"
+  }
+}
